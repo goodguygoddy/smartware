@@ -1,7 +1,7 @@
 <template>
   <div class="container max-w-full mx-auto my-6">
     <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="p-5 bg-white rounded shadow-sm dark:bg-gray-800">
+      <div class="p-5 bg-white rounded shadow dark:bg-gray-800">
         <div class="text-base text-gray-400 dark:text-gray-300">
           Total Sales
         </div>
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="p-5 bg-white rounded shadow-sm dark:bg-gray-800">
+      <div class="p-5 bg-white rounded shadow dark:bg-gray-800">
         <div class="text-base text-gray-400 dark:text-gray-300">
           Net Revenue
         </div>
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="p-5 bg-white rounded shadow-sm dark:bg-gray-800">
+      <div class="p-5 bg-white rounded shadow dark:bg-gray-800">
         <div class="text-base text-gray-400 dark:text-gray-300">Customers</div>
 
         <div class="flex items-center pt-1">
@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      <div class="p-5 bg-white rounded shadow-sm dark:bg-gray-800">
+      <div class="p-5 bg-white rounded shadow dark:bg-gray-800">
         <div class="text-base text-gray-400 dark:text-gray-300">MRR</div>
 
         <div class="flex items-center pt-1">

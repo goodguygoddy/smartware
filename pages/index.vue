@@ -8,6 +8,9 @@
 <script>
 export default {
   name: 'Dashboard',
+  head: {
+    title: 'Smartware - Dashboard',
+  },
 };
 </script>
 

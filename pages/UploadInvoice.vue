@@ -149,6 +149,9 @@ export default {
       date: '',
     };
   },
+  head: {
+    title: 'Smartware - Upload Invoice',
+  },
   methods: {
     currentDate() {
       return moment().format('Do MMMM YYYY');
