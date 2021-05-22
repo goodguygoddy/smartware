@@ -7,7 +7,7 @@ async function jwtauth(fastify, options) {
 
   fastify.decorate('JWTauthenticate', async function (request, reply) {
     try {
-      await request.jwtVerify(); // You can remove this line to turn of Authentication from server
+      // await request.jwtVerify(); // You can remove this line to turn of Authentication from server
     } catch (err) {
       reply.send(err);
     }

@@ -2,10 +2,15 @@
 const fastify = require('fastify')({ logger: true });
 require('dotenv').config();
 
+// CORS access
+fastify.register(require('fastify-cors'), {
+  // put your options here
+});
+
 // Register all plugins
 fastify.register(require('./plugins/db-connector')); //MongoDb Connection
 fastify.register(require('./plugins/swagger')); //Swagger Documentation
-fastify.register(require('./plugins/jwt-auth')); //Jwt Auth
+fastify.register(require('./plugins/jwt-auth')); //Jwt Authentication
 
 // Register all routes
 fastify.register(require('./routes/root'));

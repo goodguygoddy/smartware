@@ -2,6 +2,13 @@
   <div class="flex items-center min-h-screen bg-white dark:bg-gray-900">
     <div class="container mx-auto">
       <div class="max-w-md mx-auto my-10">
+        <div class="flex justify-center pb-6">
+          <img
+            class="w-auto md:h-auto h-14"
+            src="@/assets/images/logo.png"
+            alt="Smartware"
+          />
+        </div>
         <div class="text-center">
           <h1
             class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200"
@@ -13,7 +20,7 @@
           </p>
         </div>
         <div class="m-7">
-          <form action="">
+          <form @submit.prevent="userLogin">
             <div class="mb-6">
               <label
                 for="email"
@@ -22,6 +29,7 @@
               >
               <input
                 id="email"
+                v-model="login.email"
                 type="email"
                 name="email"
                 placeholder="you@email.com"
@@ -44,6 +52,7 @@
               </div>
               <input
                 id="password"
+                v-model="login.password"
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -52,10 +61,10 @@
             </div>
             <div class="mb-6">
               <button
-                type="button"
+                type="submit"
                 class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none"
               >
-                Sign in
+                Login
               </button>
             </div>
             <p class="text-sm text-center text-gray-400">
@@ -179,9 +188,27 @@ export default {
   data() {
     return {
       forgotpassword: false,
+      login: {
+        email: '',
+        password: '',
+      },
     };
   },
   methods: {
+    async userLogin() {
+      try {
+        await this.$auth
+          .loginWith('local', {
+            data: this.login,
+          })
+          .then(() => {
+            this.$toast.success('Logged In!');
+            this.$axios.setToken(this.$auth.token, 'Bearer');
+          });
+      } catch (err) {
+        this.$toast.error('Credentials are incorrect');
+      }
+    },
     showForgotPasswordPopUp() {
       this.forgotpassword = true;
     },

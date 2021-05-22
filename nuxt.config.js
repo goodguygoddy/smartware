@@ -39,9 +39,15 @@ export default {
     '@nuxt/content',
     // https://auth.nuxtjs.org
     '@nuxtjs/auth-next',
+    '@nuxtjs/toast',
 
     '@nuxtjs/manifest',
   ],
+
+  toast: {
+    position: 'bottom-right',
+    duration: 2000,
+  },
 
   // Tailwind Css Just-In-Time (jit)
   tailwindcss: {
@@ -50,7 +56,29 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http:localhost:8000/',
+    baseURL: 'http://localhost:8000',
+  },
+
+  // Nuxt Authentication
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/login', method: 'post' },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: '/user', method: 'get' },
+        },
+      },
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
