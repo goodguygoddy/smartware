@@ -8,9 +8,10 @@ fastify.register(require('fastify-cors'), {
 });
 
 // Register all plugins
-fastify.register(require('./plugins/db-connector')); //MongoDb Connection
-fastify.register(require('./plugins/swagger')); //Swagger Documentation
-fastify.register(require('./plugins/jwt-auth')); //Jwt Authentication
+fastify.register(require('./plugins/db-connector')); // MongoDb Connection
+fastify.register(require('./plugins/swagger')); // Swagger Documentation
+fastify.register(require('./plugins/jwt-auth')); // Jwt Authentication
+fastify.register(require('fastify-file-upload'));
 
 // Register all routes
 fastify.register(require('./routes/root'));

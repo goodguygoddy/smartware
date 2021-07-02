@@ -1,7 +1,7 @@
 async function vendorinvoice(fastify, options) {
-  const db = fastify.mongo.db.collection('vendorinvoice');
+  const db = await fastify.mongo.db.collection('vendorinvoice');
 
-  //Get all vendor invoices
+  // Get all vendor invoices
   fastify.route({
     method: 'GET',
     url: '/vendorinvoice',
@@ -23,14 +23,30 @@ async function vendorinvoice(fastify, options) {
     preValidation: [fastify.JWTauthenticate],
     handler: async function (request, reply) {
       try {
-        const res = await db.insert(request.body);
+        request.body.quantity = parseInt(request.body.quantity);
+        const res = await db.insertOne(request.body);
+        console.log(res);
         if (res) {
-          reply.send('Vendor Invoice has been added');
+          reply.send('Vendor Invoice is uploaded');
         }
       } catch (error) {
         reply.send(error);
       }
     },
+  });
+
+  fastify.post('/upload', function (req, reply) {
+    // some code to handle file
+    const files = req.raw.files;
+    console.log(files);
+    let fileArr = [];
+    for (let key in files) {
+      fileArr.push({
+        name: files[key].name,
+        mimetype: files[key].mimetype,
+      });
+    }
+    reply.send(fileArr);
   });
 }
 

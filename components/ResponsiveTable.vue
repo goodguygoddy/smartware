@@ -1,427 +1,459 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div
-    class="min-w-full my-10 overflow-x-auto border rounded-md shadow-sm dark:border-gray-700"
-  >
-    <table class="min-w-full bg-white rounded whitespace-nowrap">
-      <thead class="border-b bg-gray-50">
-        <tr class="">
-          <th class="px-3 py-3 text-center">
-            <div class="flex place-content-center">
-              <input
-                id="select_all"
-                type="checkbox"
-                name="select_all"
-                class="w-4 h-4 text-indigo-500 border border-gray-200 rounded focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 dark:border-gray-700"
-              />
+  <div class="pt-8 flex flex-col sm:px-6 lg:px-8">
+    <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
+      <div
+        v-if="loading"
+        class="
+          overflow-hidden
+          flex
+          justify-center
+          max-h-80
+          bg-white
+          shadow
+          rounded-lg
+        "
+      >
+        <lottie-animation
+          ref="animation"
+          style="width: 150px"
+          :animation-data="require('@/assets/lottie/loader.json')"
+          :loop="true"
+          :auto-play="true"
+          :speed="1"
+        />
+      </div>
+      <div v-else class="py-2 align-middle inline-block min-w-full">
+        <div class="w-1/5 pl-1 pb-4 mt-5">
+          <label for="search" class="sr-only">Search</label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <div
+              class="
+                absolute
+                inset-y-0
+                left-0
+                pl-3
+                flex
+                items-center
+                pointer-events-none
+              "
+              aria-hidden="true"
+            >
+              <!-- Heroicon name: solid/search -->
+              <svg
+                class="mr-3 h-4 w-4 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd"
+                />
+              </svg>
             </div>
-          </th>
-
-          <th
-            class="px-3 py-3 text-xs font-normal text-left text-gray-500 uppercase align-middle"
+            <input
+              id="search"
+              v-model="search"
+              type="text"
+              name="search"
+              class="
+                focus:ring-indigo-500 focus:border-indigo-500
+                block
+                w-full
+                pl-9
+                sm:text-sm
+                border-gray-300
+                rounded-md
+              "
+              placeholder="Search"
+            />
+          </div>
+        </div>
+        <div
+          class="shadow overflow-hidden border border-gray-200 sm:rounded-lg"
+        >
+          <table class="min-w-full divide-y divide-gray-200 table-auto">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Company Name
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  #PO Reference Number
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  #Quantity
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Description
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Uploaded Date
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Due Date
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Remarks
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Type
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Basic
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Gross
+                </th>
+                <th scope="col" class="relative px-6 py-3">
+                  <span class="sr-only">Preview</span>
+                </th>
+                <th scope="col" class="relative px-6 py-3">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr v-for="item in filteredData" :key="item._id">
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  {{ item.company_name }}
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  {{ item.po_reference_number }}
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  {{ item.quantity }}
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  <span v-if="showMore === false">
+                    {{ item.description.slice(0, 50) }}
+                  </span>
+                  <a
+                    v-if="showMore === false"
+                    class="text-sm text-indigo-600 hover:text-indigo-900"
+                    @click="showMore = true"
+                    >show more</a
+                  >
+                  <span v-if="showMore === true">
+                    {{ item.description }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  {{ dateFormat(item.uploaded_date) }}
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  {{ dateFormat(item.due_date) }}
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  {{ item.remarks }}
+                </td>
+                <td
+                  class="
+                    px-6
+                    py-4
+                    whitespace-normal
+                    text-sm text-gray-500
+                    capitalize
+                  "
+                >
+                  {{ item.type }}
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  {{ item.basic_amount | toCurrency }}
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  {{ item.gross_amount | toCurrency }}
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  <button>
+                    <!-- Preview Button -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-6 text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
+                    </svg>
+                  </button>
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  <button>
+                    <!-- Edit Button -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-6 text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                      />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav
+            class="
+              bg-gray-50
+              px-4
+              py-3
+              flex
+              items-center
+              justify-between
+              border-t border-gray-200
+              sm:px-6
+            "
+            aria-label="Pagination"
           >
-            Order ID
-          </th>
-
-          <th
-            class="px-3 py-3 text-xs font-normal text-left text-gray-500 uppercase align-middle"
-          >
-            Date
-          </th>
-
-          <th
-            class="px-3 py-3 text-xs font-normal text-left text-gray-500 uppercase align-middle"
-          >
-            Customer
-          </th>
-
-          <th
-            class="px-3 py-3 text-xs font-normal text-left text-gray-500 uppercase align-middle"
-          >
-            Status
-          </th>
-
-          <th
-            class="px-3 py-3 text-xs font-normal text-right text-gray-500 uppercase align-middle"
-          >
-            Amount
-          </th>
-
-          <th
-            class="px-3 py-3 text-xs font-normal text-left text-gray-500 uppercase align-middle"
-          ></th>
-        </tr>
-      </thead>
-
-      <tbody class="text-sm bg-white divide-y divide-gray-200">
-        <tr>
-          <td class="w-20 px-3 py-4 text-center">
-            <input
-              type="checkbox"
-              name="select"
-              class="w-4 h-4 rounded opacity-50"
-            />
-          </td>
-
-          <td class="px-3 py-4 text-gray-600">#102-325-2565</td>
-
-          <td class="px-3 py-4 text-gray-500">May 07, 2021</td>
-
-          <td class="px-3 py-4">
-            <div class="flex items-center w-max">
-              <img
-                width="50"
-                height="50"
-                class="w-10 h-10 rounded-full"
-                src="https://images.unsplash.com/photo-1506085452766-c330853bea50?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;h=200&amp;w=200&amp;s=3e378252a934e660f231666b51bd269a"
-                alt="avatar"
-              />
-
-              <div class="ml-4">
-                <div>Chase Maxwell</div>
-
-                <div class="text-sm text-gray-400">
-                  chase@anothercompany.com
-                </div>
-              </div>
+            <div class="hidden sm:block">
+              <p class="text-sm text-gray-700">
+                Showing
+                <span class="font-medium">1</span>
+                to
+                <span class="font-medium">10</span>
+                of
+                <span class="font-medium">{{ filteredData.length }}</span>
+                results
+              </p>
             </div>
-          </td>
-
-          <td class="px-3 py-4">
-            <span
-              class="px-4 py-1 text-sm text-green-500 rounded-full bg-green-50"
-              >completed</span
-            >
-          </td>
-
-          <td class="px-3 py-4 text-right text-gray-500">$125.00</td>
-
-          <td class="w-20 px-3 py-2 text-center text-gray-500">
-            <div class="flex place-content-center">
-              <a href="#!">
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  ></path>
-                </svg>
-              </a>
+            <div class="flex-1 flex justify-between sm:justify-end">
+              <button
+                class="
+                  relative
+                  inline-flex
+                  items-center
+                  px-4
+                  py-2
+                  border border-gray-300
+                  text-sm
+                  font-medium
+                  rounded-md
+                  text-gray-700
+                  bg-white
+                  hover:bg-gray-50
+                "
+              >
+                Previous
+              </button>
+              <button
+                class="
+                  ml-3
+                  relative
+                  inline-flex
+                  items-center
+                  px-4
+                  py-2
+                  border border-gray-300
+                  text-sm
+                  font-medium
+                  rounded-md
+                  text-gray-700
+                  bg-white
+                  hover:bg-gray-50
+                "
+              >
+                Next
+              </button>
             </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="w-20 px-3 py-4 text-center">
-            <input
-              type="checkbox"
-              name="select"
-              class="w-4 h-4 rounded opacity-50"
-            />
-          </td>
-
-          <td class="px-3 py-4 text-gray-600">#102-325-2565</td>
-
-          <td class="px-3 py-4 text-gray-600">Oct 30, 2021</td>
-
-          <td class="px-3 py-4">
-            <div class="flex items-center w-max">
-              <img
-                width="50"
-                height="50"
-                class="w-10 h-10 rounded-full"
-                src="https://uifaces.co/our-content/donated/N5PLzyan.jpg"
-                alt="avatar"
-              />
-
-              <div class="ml-4">
-                <div>Cristofer Dorwart</div>
-
-                <div class="text-sm text-gray-400">chris@ourcompany.com</div>
-              </div>
-            </div>
-          </td>
-
-          <td class="px-3 py-4">
-            <span
-              class="px-4 py-1 text-sm text-green-500 rounded-full bg-green-50"
-              >completed</span
-            >
-          </td>
-
-          <td class="px-3 py-4 text-right text-gray-600">$260.00</td>
-
-          <td class="w-20 px-3 py-2 text-center text-gray-500">
-            <div class="flex place-content-center">
-              <a href="#!">
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="w-20 px-3 py-4 text-center">
-            <input
-              type="checkbox"
-              name="select"
-              class="w-4 h-4 rounded opacity-50"
-            />
-          </td>
-
-          <td class="px-3 py-4 text-gray-600">#102-325-2565</td>
-
-          <td class="px-3 py-4 text-gray-600">Sep 16, 2021</td>
-
-          <td class="px-3 py-4">
-            <div class="flex items-center w-max">
-              <img
-                width="50"
-                height="50"
-                class="w-10 h-10 rounded-full"
-                src="https://images.unsplash.com/photo-1509868918748-a554ad25f858?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;h=200&amp;w=200&amp;s=3159ec467959b2aada4b75d565c270aa"
-                alt="avatar"
-              />
-
-              <div class="ml-4">
-                <div>Zahraa Duncan</div>
-
-                <div class="text-sm text-gray-400">zahraa@ourcompany.com</div>
-              </div>
-            </div>
-          </td>
-
-          <td class="px-3 py-4">
-            <span
-              class="px-4 py-1 text-sm text-yellow-500 rounded-full bg-yellow-50"
-              >in-progress</span
-            >
-          </td>
-
-          <td class="px-3 py-4 text-right text-gray-600">$75.00</td>
-
-          <td class="w-20 px-3 py-2 text-center text-gray-500">
-            <div class="flex place-content-center">
-              <a href="#!">
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="w-20 px-3 py-4 text-center">
-            <input
-              type="checkbox"
-              name="select"
-              class="w-4 h-4 rounded opacity-50"
-            />
-          </td>
-
-          <td class="px-3 py-4 text-gray-600">#102-325-2565</td>
-
-          <td class="px-3 py-4 text-gray-600">Aug 14, 2021</td>
-
-          <td class="px-3 py-4">
-            <div class="flex items-center w-max">
-              <img
-                width="50"
-                height="50"
-                class="w-10 h-10 rounded-full"
-                src="https://randomuser.me/api/portraits/men/10.jpg"
-                alt="avatar"
-              />
-
-              <div class="ml-4">
-                <div>Viktor Xiong</div>
-
-                <div class="text-sm text-gray-400">
-                  vicktor@supercompany.com
-                </div>
-              </div>
-            </div>
-          </td>
-
-          <td class="px-3 py-4">
-            <span
-              class="px-4 py-1 text-sm text-green-500 rounded-full bg-green-50"
-              >completed</span
-            >
-          </td>
-
-          <td class="px-3 py-4 text-right text-gray-600">$326.00</td>
-
-          <td class="w-20 px-3 py-2 text-center text-gray-500">
-            <div class="flex place-content-center">
-              <a href="#!">
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="w-20 px-3 py-4 text-center">
-            <input
-              type="checkbox"
-              name="select"
-              class="w-4 h-4 rounded opacity-50"
-            />
-          </td>
-
-          <td class="px-3 py-4 text-gray-600">#102-325-2565</td>
-
-          <td class="px-3 py-4 text-gray-600">May 10, 2021</td>
-
-          <td class="px-3 py-4">
-            <div class="flex items-center w-max">
-              <img
-                width="50"
-                height="50"
-                class="w-10 h-10 rounded-full"
-                src="https://randomuser.me/api/portraits/men/18.jpg"
-                alt="avatar"
-              />
-
-              <div class="ml-4">
-                <div>Cristiano Summers</div>
-
-                <div class="text-sm text-gray-400">me@ourbestcompany.com</div>
-              </div>
-            </div>
-          </td>
-
-          <td class="px-3 py-4">
-            <span class="px-4 py-1 text-sm text-red-500 rounded-full bg-red-50"
-              >cancelled</span
-            >
-          </td>
-
-          <td class="px-3 py-4 text-right text-gray-600">$250.00</td>
-
-          <td class="w-20 px-3 py-2 text-center text-gray-500">
-            <div class="flex place-content-center">
-              <a href="#!">
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="w-20 px-3 py-4 text-center">
-            <input
-              type="checkbox"
-              name="select"
-              class="w-4 h-4 rounded opacity-50"
-            />
-          </td>
-
-          <td class="px-3 py-4 text-gray-600">#102-325-2565</td>
-
-          <td class="px-3 py-4 text-gray-600">Jun 28, 2021</td>
-
-          <td class="px-3 py-4">
-            <div class="flex items-center w-max">
-              <img
-                width="50"
-                height="50"
-                class="w-10 h-10 rounded-full"
-                src="https://randomuser.me/api/portraits/women/17.jpg"
-                alt="avatar"
-              />
-
-              <div class="ml-4">
-                <div>Kerrie Webster</div>
-
-                <div class="text-sm text-gray-400">kerrie@ourcompany.com</div>
-              </div>
-            </div>
-          </td>
-
-          <td class="px-3 py-4">
-            <span
-              class="px-4 py-1 text-sm text-green-500 rounded-full bg-green-50"
-              >completed</span
-            >
-          </td>
-
-          <td class="px-3 py-4 text-right text-gray-600">$175.00</td>
-
-          <td class="w-20 px-3 py-2 text-center text-gray-500">
-            <div class="flex place-content-center">
-              <a href="#!">
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </nav>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<script>
+import dayjs from 'dayjs';
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
+import LottieAnimation from 'lottie-web-vue';
+
+export default {
+  name: 'UploadInvoice',
+  components: {
+    LottieAnimation,
+  },
+  filters: {
+    toCurrency(value) {
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+      return formatter.format(value);
+    },
+  },
+  data() {
+    return {
+      loading: true,
+      showMore: false,
+      data: {},
+      search: '',
+    };
+  },
+  computed: {
+    filteredData() {
+      return this.data.filter((item) => {
+        return (
+          item.company_name.toLowerCase().match(this.search.toLowerCase()) ||
+          item.po_reference_number
+            .toLowerCase()
+            .match(this.search.toLowerCase())
+        );
+      });
+    },
+  },
+  mounted() {
+    this.getInvoice();
+  },
+  methods: {
+    async getInvoice() {
+      try {
+        this.loading = true;
+        const res = await this.$axios({
+          method: 'get',
+          url: '/vendorinvoice',
+        });
+        this.data = res.data;
+      } catch (error) {
+        this.$toast.error(error);
+      }
+      this.loading = false;
+    },
+    dateFormat(date) {
+      dayjs.extend(LocalizedFormat);
+      return dayjs(date).format('ll');
+    },
+  },
+};
+</script>

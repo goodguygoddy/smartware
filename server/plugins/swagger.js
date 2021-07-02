@@ -1,4 +1,4 @@
-//Still have to work on making the documentation and implementation
+// Still have to work on making the documentation and implementation
 
 const fp = require('fastify-plugin');
 

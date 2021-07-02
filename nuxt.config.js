@@ -11,6 +11,10 @@ export default {
   },
 
   // Router Settings
+  router: {
+    base: '/',
+    middleware: ['auth'],
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
@@ -61,6 +65,12 @@ export default {
 
   // Nuxt Authentication
   auth: {
+    cookie: {
+      prefix: 'auth.',
+      options: {
+        path: '/',
+      },
+    },
     strategies: {
       local: {
         token: {
@@ -79,6 +89,13 @@ export default {
         },
       },
     },
+    localStorage: false,
+    // The redirects are not working in the nuxt auth modules as of now
+    // redirect: {
+    //   login: '/login',
+    //   logout: '/login',
+    //   home: '/',
+    // },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

@@ -53,7 +53,15 @@
         >
           <div
             v-show="offCanvasMenu"
-            class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white"
+            class="
+              relative
+              flex-1 flex flex-col
+              max-w-xs
+              w-full
+              pt-5
+              pb-4
+              bg-white
+            "
           >
             <!--
         Close button, show/hide based on off-canvas menu state.
@@ -78,7 +86,19 @@
                 class="absolute top-0 right-0 -mr-12 pt-2"
               >
                 <button
-                  class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                  class="
+                    ml-1
+                    flex
+                    items-center
+                    justify-center
+                    h-10
+                    w-10
+                    rounded-full
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-inset
+                    focus:ring-white
+                  "
                   @click="
                     offCanvasMenu = false;
                     userMenu = false;
@@ -117,7 +137,18 @@
                 <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
                 <NuxtLink
                   to="/"
-                  class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                  class="
+                    text-gray-600
+                    hover:bg-gray-50 hover:text-gray-900
+                    group
+                    flex
+                    items-center
+                    px-2
+                    py-2
+                    text-base
+                    font-medium
+                    rounded-md
+                  "
                   @click.native="
                     offCanvasMenu = false;
                     userMenu = false;
@@ -145,7 +176,18 @@
 
                 <NuxtLink
                   to="/team"
-                  class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                  class="
+                    text-gray-600
+                    hover:bg-gray-50 hover:text-gray-900
+                    group
+                    flex
+                    items-center
+                    px-2
+                    py-2
+                    text-base
+                    font-medium
+                    rounded-md
+                  "
                   @click.native="
                     offCanvasMenu = false;
                     userMenu = false;
@@ -172,7 +214,18 @@
 
                 <NuxtLink
                   to="/projects"
-                  class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                  class="
+                    text-gray-600
+                    hover:bg-gray-50 hover:text-gray-900
+                    group
+                    flex
+                    items-center
+                    px-2
+                    py-2
+                    text-base
+                    font-medium
+                    rounded-md
+                  "
                   @click.native="
                     offCanvasMenu = false;
                     userMenu = false;
@@ -199,7 +252,18 @@
 
                 <NuxtLink
                   to="/calendar"
-                  class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                  class="
+                    text-gray-600
+                    hover:bg-gray-50 hover:text-gray-900
+                    group
+                    flex
+                    items-center
+                    px-2
+                    py-2
+                    text-base
+                    font-medium
+                    rounded-md
+                  "
                   @click.native="
                     offCanvasMenu = false;
                     userMenu = false;
@@ -226,7 +290,18 @@
 
                 <NuxtLink
                   to="/documents"
-                  class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                  class="
+                    text-gray-600
+                    hover:bg-gray-50 hover:text-gray-900
+                    group
+                    flex
+                    items-center
+                    px-2
+                    py-2
+                    text-base
+                    font-medium
+                    rounded-md
+                  "
                   @click.native="
                     offCanvasMenu = false;
                     userMenu = false;
@@ -253,7 +328,18 @@
 
                 <NuxtLink
                   to="/uploadinvoice"
-                  class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                  class="
+                    text-gray-600
+                    hover:bg-gray-50 hover:text-gray-900
+                    group
+                    flex
+                    items-center
+                    px-2
+                    py-2
+                    text-base
+                    font-medium
+                    rounded-md
+                  "
                   @click.native="
                     offCanvasMenu = false;
                     userMenu = false;
@@ -293,7 +379,14 @@
       <div class="flex flex-col w-64">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div
-          class="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-white overflow-y-auto"
+          class="
+            flex flex-col flex-grow
+            border-r border-gray-200
+            pt-5
+            pb-4
+            bg-white
+            overflow-y-auto
+          "
         >
           <div class="flex items-center flex-shrink-0 px-4">
             <img
@@ -307,7 +400,18 @@
               <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
               <NuxtLink
                 to="/"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                class="
+                  text-gray-600
+                  hover:bg-gray-50 hover:text-gray-900
+                  group
+                  flex
+                  items-center
+                  px-2
+                  py-2
+                  text-sm
+                  font-medium
+                  rounded-md
+                "
                 @click.native="
                   offCanvasMenu = false;
                   userMenu = false;
@@ -335,7 +439,18 @@
 
               <NuxtLink
                 to="/team"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                class="
+                  text-gray-600
+                  hover:bg-gray-50 hover:text-gray-900
+                  group
+                  flex
+                  items-center
+                  px-2
+                  py-2
+                  text-sm
+                  font-medium
+                  rounded-md
+                "
                 @click.native="
                   offCanvasMenu = false;
                   userMenu = false;
@@ -362,7 +477,18 @@
 
               <NuxtLink
                 to="/projects"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                class="
+                  text-gray-600
+                  hover:bg-gray-50 hover:text-gray-900
+                  group
+                  flex
+                  items-center
+                  px-2
+                  py-2
+                  text-sm
+                  font-medium
+                  rounded-md
+                "
                 @click.native="
                   offCanvasMenu = false;
                   userMenu = false;
@@ -389,7 +515,18 @@
 
               <NuxtLink
                 to="/calendar"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                class="
+                  text-gray-600
+                  hover:bg-gray-50 hover:text-gray-900
+                  group
+                  flex
+                  items-center
+                  px-2
+                  py-2
+                  text-sm
+                  font-medium
+                  rounded-md
+                "
                 @click.native="
                   offCanvasMenu = false;
                   userMenu = false;
@@ -416,7 +553,18 @@
 
               <NuxtLink
                 to="/documents"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                class="
+                  text-gray-600
+                  hover:bg-gray-50 hover:text-gray-900
+                  group
+                  flex
+                  items-center
+                  px-2
+                  py-2
+                  text-sm
+                  font-medium
+                  rounded-md
+                "
                 @click.native="
                   offCanvasMenu = false;
                   userMenu = false;
@@ -443,7 +591,18 @@
 
               <NuxtLink
                 to="/uploadinvoice"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                class="
+                  text-gray-600
+                  hover:bg-gray-50 hover:text-gray-900
+                  group
+                  flex
+                  items-center
+                  px-2
+                  py-2
+                  text-sm
+                  font-medium
+                  rounded-md
+                "
                 @click.native="
                   offCanvasMenu = false;
                   userMenu = false;
@@ -475,7 +634,16 @@
     <div class="flex flex-col w-0 flex-1 overflow-hidden">
       <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
         <button
-          class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+          class="
+            px-4
+            border-r border-gray-200
+            text-gray-500
+            focus:outline-none
+            focus:ring-2
+            focus:ring-inset
+            focus:ring-indigo-500
+            md:hidden
+          "
           @click="offCanvasMenu = !offCanvasMenu"
         >
           <span class="sr-only">Open sidebar</span>
@@ -498,9 +666,16 @@
         </button>
         <div class="flex-1 px-4 flex justify-between">
           <div class="flex-1 flex">
-            <div class="relative w-full text-gray-600">
+            <div class="relative w-full text-black text-xl">
               <div
-                class="absolute inset-y-0 left-0 flex items-center pointer-events-none"
+                class="
+                  absolute
+                  inset-y-0
+                  left-0
+                  flex
+                  items-center
+                  pointer-events-none
+                "
               >
                 {{ $route.name | headingFilter }}
               </div>
@@ -508,7 +683,14 @@
           </div>
           <div class="ml-4 flex items-center md:ml-6">
             <button
-              class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              class="
+                bg-white
+                p-1
+                rounded-full
+                text-gray-400
+                hover:text-gray-500
+                focus:outline-none
+              "
             >
               <span class="sr-only">View notifications</span>
               <!-- Heroicon name: outline/bell -->
@@ -529,23 +711,39 @@
               </svg>
             </button>
 
+            <h3 class="ml-1 text-blue-500">{{ $auth.user.name }}</h3>
+
             <!-- Profile dropdown -->
             <div class="ml-3 relative">
               <div>
                 <button
                   id="user-menu"
                   type="button"
-                  class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  class="
+                    max-w-xs
+                    bg-white
+                    flex
+                    items-center
+                    text-sm
+                    rounded-full
+                    focus:outline-none
+                  "
                   aria-expanded="false"
                   aria-haspopup="true"
                   @click="userMenu = !userMenu"
                 >
-                  <span class="sr-only">Open user menu</span>
-                  <img
-                    class="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=eCt6Gn7zPJ&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
+                  <!-- Heroicon name: solid/dots-vertical -->
+                  <svg
+                    class="h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+                    />
+                  </svg>
                 </button>
               </div>
 
@@ -569,30 +767,61 @@
               >
                 <div
                   v-show="userMenu"
-                  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  class="
+                    origin-top-right
+                    absolute
+                    right-0
+                    mt-2
+                    w-48
+                    rounded-md
+                    shadow-lg
+                    py-1
+                    bg-white
+                    ring-1 ring-black ring-opacity-5
+                    focus:outline-none
+                  "
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu"
                 >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  <NuxtLink
+                    to="/profile"
+                    class="
+                      block
+                      px-4
+                      py-2
+                      text-sm text-gray-700
+                      hover:bg-gray-100
+                    "
                     role="menuitem"
-                    >Your Profile</a
+                    >Your Profile</NuxtLink
                   >
 
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  <NuxtLink
+                    to="/settings"
+                    class="
+                      block
+                      px-4
+                      py-2
+                      text-sm text-gray-700
+                      hover:bg-gray-100
+                    "
                     role="menuitem"
-                    >Settings</a
+                    >Settings</NuxtLink
                   >
 
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  <NuxtLink
+                    to="/login"
+                    class="
+                      block
+                      px-4
+                      py-2
+                      text-sm text-gray-700
+                      hover:bg-gray-100
+                    "
                     role="menuitem"
-                    >Sign out</a
+                    @click.native="signOut"
+                    >Sign out</NuxtLink
                   >
                 </div>
               </transition>
@@ -606,7 +835,7 @@
         tabindex="0"
       >
         <div class="py-6" @click="userMenu = false">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <div class="mx-auto px-4 sm:px-6 md:px-8">
             <!-- Replace with your content -->
             <Nuxt />
             <!-- /End replace -->
@@ -631,6 +860,13 @@ export default {
       offCanvasMenu: false,
       userMenu: false,
     };
+  },
+  methods: {
+    async signOut() {
+      await this.$auth.logout();
+      this.$router.push('/login');
+      this.$toast.success('Logged Out!');
+    },
   },
 };
 </script>

@@ -15,7 +15,20 @@
       <div class="p-2 w-full">
         <button
           type="button"
-          class="flex mx-auto text-white text-xs sm:text-base border-0 px-2.5 py-1.5 sm:px-4 sm:py-2 focus:outline-none bg-indigo-500 hover:bg-red-500 rounded"
+          class="
+            flex
+            mx-auto
+            text-white text-xs
+            sm:text-base
+            border-0
+            px-2.5
+            py-1.5
+            sm:px-4 sm:py-2
+            focus:outline-none
+            bg-indigo-500
+            hover:bg-indigo-600
+            rounded
+          "
         >
           <NuxtLink to="/">Go Back</NuxtLink>
         </button>

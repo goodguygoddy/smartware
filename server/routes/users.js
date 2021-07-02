@@ -6,7 +6,7 @@ async function users(fastify, options) {
     method: 'GET',
     url: '/users',
     preValidation: [fastify.JWTauthenticate],
-    handler: async function (request, reply) {
+    async handler(request, reply) {
       try {
         const res = await db.find().toArray();
         reply.send(res);
@@ -20,7 +20,7 @@ async function users(fastify, options) {
   fastify.route({
     method: 'POST',
     url: '/login',
-    handler: async function (request, reply) {
+    async handler(request, reply) {
       try {
         const res = await db
           .find({
@@ -28,7 +28,7 @@ async function users(fastify, options) {
             password: request.body.password,
           })
           .toArray();
-        if (res.length != 0) {
+        if (res.length !== 0) {
           const token = await fastify.jwt.sign({ res });
           reply.send({ token });
         } else {
@@ -40,13 +40,26 @@ async function users(fastify, options) {
     },
   });
 
+  // Logout User
+  fastify.route({
+    method: 'POST',
+    url: '/logout',
+    async handler(request, reply) {
+      try {
+        reply.send('Successfully logged out!');
+      } catch (error) {
+        reply.send(error);
+      }
+    },
+  });
+
   // Register new users
   fastify.route({
     method: 'POST',
     url: '/registeruser',
-    handler: async function (request, reply) {
+    async handler(request, reply) {
       try {
-        const userexist = db.find({ email: request.email }).limit(1);
+        const userexist = await db.findOne({ email: request.body.email });
         if (userexist) {
           reply.code(409).send('This email is already registered');
         } else {
@@ -61,12 +74,12 @@ async function users(fastify, options) {
     },
   });
 
-  //Get the user by id
+  // Get the user by id              // have not been used anywhere yet
   fastify.route({
     method: 'GET',
     url: '/users/:id',
     preValidation: [fastify.JWTauthenticate],
-    handler: async function (request, reply) {
+    async handler(request, reply) {
       try {
         const res = await db.findOne({
           _id: fastify.mongo.ObjectId(request.params.id),
@@ -83,7 +96,7 @@ async function users(fastify, options) {
     method: 'GET',
     url: '/user',
     preValidation: [fastify.JWTauthenticate],
-    handler: async function (request, reply) {
+    async handler(request, reply) {
       try {
         const token = request.headers.authorization.split(' ')[1];
         const decoded = await fastify.jwt.decode(token);
