@@ -30,6 +30,7 @@
     "fastify-plugin": "^3.0.0",
     "fastify-swagger": "^4.7.0",
     "lottie-web-vue": "^1.0.1",
+    "nodemon": "^2.0.13",
     "nuxt": "^2.15.7",
     "v-money": "^0.8.1",
     "vue-upload-component": "^2.8.22",

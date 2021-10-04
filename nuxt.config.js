@@ -54,9 +54,9 @@ export default {
   },
 
   // Tailwind Css Just-In-Time (jit)
-  tailwindcss: {
-    jit: true,
-  },
+  // tailwindcss: {
+  //   jit: true,
+  // },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

@@ -245,7 +245,21 @@
                       pointer-events-none
                     "
                   >
-                    <span class="text-gray-500 sm:text-sm"> $ </span>
+                    <span
+                      v-if="
+                        currency_selected === 'USD' ||
+                        currency_selected === 'CAD'
+                      "
+                      class="text-gray-500 sm:text-sm"
+                    >
+                      $
+                    </span>
+                    <span
+                      v-if="currency_selected === 'EUR'"
+                      class="text-gray-500 sm:text-sm"
+                    >
+                      €
+                    </span>
                   </div>
                   <money
                     id="invoice_amount_basic"
@@ -264,7 +278,7 @@
                       rounded-md
                     "
                     placeholder="0.00"
-                    aria-describedby="price-currency"
+                    aria-describedby="basic-currency"
                   ></money>
                   <div
                     class="
@@ -277,8 +291,8 @@
                       pointer-events-none
                     "
                   >
-                    <span id="price-currency" class="text-gray-500 sm:text-sm">
-                      USD
+                    <span id="basic-currency" class="text-gray-500 sm:text-sm">
+                      {{ currency_selected }}
                     </span>
                   </div>
                 </div>
@@ -302,7 +316,21 @@
                       pointer-events-none
                     "
                   >
-                    <span class="text-gray-500 sm:text-sm"> $ </span>
+                    <span
+                      v-if="
+                        currency_selected === 'USD' ||
+                        currency_selected === 'CAD'
+                      "
+                      class="text-gray-500 sm:text-sm"
+                    >
+                      $
+                    </span>
+                    <span
+                      v-if="currency_selected === 'EUR'"
+                      class="text-gray-500 sm:text-sm"
+                    >
+                      €
+                    </span>
                   </div>
                   <money
                     id="invoice_amount_gross"
@@ -321,22 +349,33 @@
                       rounded-md
                     "
                     placeholder="0.00"
-                    aria-describedby="price-currency"
+                    aria-describedby="gross-currency"
                   ></money>
                   <div
-                    class="
-                      absolute
-                      inset-y-0
-                      right-0
-                      pr-3
-                      flex
-                      items-center
-                      pointer-events-none
-                    "
+                    class="absolute inset-y-0 right-0 pr-3 flex items-center"
                   >
-                    <span id="price-currency" class="text-gray-500 sm:text-sm">
-                      USD
-                    </span>
+                    <label for="gross-currency" class="sr-only">Currency</label>
+                    <select
+                      id="gross-currency"
+                      v-model="currency_selected"
+                      name="gross-currency"
+                      class="
+                        focus:ring-indigo-500 focus:border-indigo-500
+                        h-full
+                        py-0
+                        pl-2
+                        pr-7
+                        border-transparent
+                        bg-transparent
+                        text-gray-500
+                        sm:text-sm
+                        rounded-md
+                      "
+                    >
+                      <option>USD</option>
+                      <option>CAD</option>
+                      <option>EUR</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -535,6 +574,7 @@ export default {
       type: null,
       basic_amount: 0,
       gross_amount: 0,
+      currency_selected: 'USD',
       file: null,
       fileFormData: null,
 
@@ -566,27 +606,12 @@ export default {
       this.fileFormData.append('type', this.type);
       this.fileFormData.append('basic_amount', this.basic_amount);
       this.fileFormData.append('gross_amount', this.gross_amount);
+      this.fileFormData.append('currency', this.currency_selected);
       this.fileFormData.append('file', this.file);
       try {
         const res = await this.$axios({
           method: 'post',
           url: '/vendorinvoice',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          // data: {
-          //   company_name: this.company_name,
-          //   po_reference_number: this.po_reference_number,
-          //   quantity: this.quantity,
-          //   description: this.description,
-          //   uploaded_date: dayjs().format,
-          //   due_date: this.due_date,
-          //   remarks: this.remarks,
-          //   type: this.type,
-          //   basic_amount: this.basic_amount,
-          //   gross_amount: this.gross_amount,
-          //   file: this.fileFormData.file,
-          // },
           data: this.fileFormData,
         });
         this.$toast.success(res.data);

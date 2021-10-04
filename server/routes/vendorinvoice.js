@@ -16,6 +16,24 @@ async function vendorinvoice(fastify, options) {
     },
   });
 
+  // Get a single file with ID
+  fastify.route({
+    method: 'GET',
+    url: '/vendorinvoice/file/:id',
+    preValidation: [fastify.JWTauthenticate],
+    handler: async function (request, reply) {
+      try {
+        const res = await db.findOne({
+          _id: fastify.mongo.ObjectId(request.params.id),
+        });
+        console.log(res.file);
+        reply.send(res.file);
+      } catch (error) {
+        reply.send(error);
+      }
+    },
+  });
+
   // Upload vendor invoice
   fastify.route({
     method: 'POST',

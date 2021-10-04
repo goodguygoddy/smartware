@@ -81,7 +81,8 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pl-3
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -95,7 +96,7 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -104,12 +105,12 @@
                     tracking-wider
                   "
                 >
-                  #PO Reference Number
+                  #PO Reference
                 </th>
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -123,7 +124,7 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -137,7 +138,7 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -151,7 +152,7 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -165,7 +166,7 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -179,7 +180,7 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -193,7 +194,7 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -207,7 +208,7 @@
                 <th
                   scope="col"
                   class="
-                    px-6
+                    pr-3
                     py-3
                     text-left text-xs
                     font-medium
@@ -218,67 +219,66 @@
                 >
                   Gross
                 </th>
-                <th scope="col" class="relative px-6 py-3">
+                <th scope="col" class="relative">
                   <span class="sr-only">Preview</span>
                 </th>
-                <th scope="col" class="relative px-6 py-3">
-                  <span class="sr-only">Edit</span>
+                <th scope="col" class="relative">
+                  <span class="sr-only">Delete</span>
                 </th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
               <tr v-for="item in filteredData" :key="item._id">
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                <td
+                  class="pl-3 pr-3 py-1 whitespace-normal text-sm text-gray-500"
+                >
                   {{ item.company_name }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                <td class="pr-3 py-1 whitespace-normal text-sm text-gray-500">
                   {{ item.po_reference_number }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                <td class="pr-3 py-1 whitespace-normal text-sm text-gray-500">
                   {{ item.quantity }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                  <span v-if="showMore === false">
-                    {{ item.description.slice(0, 50) }}
-                  </span>
-                  <a
-                    v-if="showMore === false"
-                    class="text-sm text-indigo-600 hover:text-indigo-900"
-                    @click="showMore = true"
-                    >show more</a
-                  >
-                  <span v-if="showMore === true">
-                    {{ item.description }}
-                  </span>
+                <td
+                  class="
+                    pr-3
+                    py-1
+                    whitespace-normal
+                    text-sm text-gray-500 text-justify
+                  "
+                >
+                  {{ item.description }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                <td class="pr-3 py-1 whitespace-normal text-sm text-gray-500">
                   {{ dateFormat(item.uploaded_date) }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                <td class="pr-3 py-1 whitespace-normal text-sm text-gray-500">
                   {{ dateFormat(item.due_date) }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                <td class="pr-3 py-1 whitespace-normal text-sm text-gray-500">
                   {{ item.remarks }}
                 </td>
                 <td
                   class="
-                    px-6
-                    py-4
+                    pr-3
+                    py-1
                     whitespace-normal
                     text-sm text-gray-500
                     capitalize
+                    text-justify
                   "
                 >
                   {{ item.type }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                  {{ item.basic_amount | toCurrency }}
+                <td class="pr-3 py-1 whitespace-normal text-sm text-gray-500">
+                  {{ item.basic_amount | toCurrency(item.currency) }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                  {{ item.gross_amount | toCurrency }}
+                <td class="pr-3 py-1 whitespace-normal text-sm text-gray-500">
+                  {{ item.gross_amount | toCurrency(item.currency) }}
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                  <button>
+                <td class="whitespace-normal text-sm text-gray-500">
+                  <button @click="getPreview(item._id)">
                     <!-- Preview Button -->
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -302,8 +302,8 @@
                     </svg>
                   </button>
                 </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                  <button>
+                <td class="pr-3 whitespace-normal text-sm text-gray-500">
+                  <button @click="deleteInvoice(item._id)">
                     <!-- Edit Button -->
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -316,7 +316,7 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                       />
                     </svg>
                   </button>
@@ -405,10 +405,10 @@ export default {
     LottieAnimation,
   },
   filters: {
-    toCurrency(value) {
+    toCurrency(value, currency) {
       const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'USD',
+        currency,
       });
       return formatter.format(value);
     },
@@ -441,7 +441,7 @@ export default {
       try {
         this.loading = true;
         const res = await this.$axios({
-          method: 'get',
+          method: 'GET',
           url: '/vendorinvoice',
         });
         this.data = res.data;
@@ -449,6 +449,30 @@ export default {
         this.$toast.error(error);
       }
       this.loading = false;
+    },
+    async getPreview(id) {
+      const res = await this.$axios({
+        method: 'GET',
+        url: `/vendorinvoice/file/${id}`,
+      });
+
+      const byteCharacters = atob(res.data.data);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const file = new Blob([byteArray], { type: res.data.mimetype });
+      const url = URL.createObjectURL(file);
+
+      window.open(url);
+    },
+    async deleteInvoice(id) {
+      const res = await this.$axios({
+        method: 'DELETE',
+        url: `/vendorinvoice/${id}`,
+      });
+      console.log(res);
     },
     dateFormat(date) {
       dayjs.extend(LocalizedFormat);

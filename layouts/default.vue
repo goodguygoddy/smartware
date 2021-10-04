@@ -873,7 +873,7 @@ export default {
 
 <style>
 .nuxt-link-exact-active {
-  @apply bg-gray-100;
-  @apply text-gray-900;
+  /* Do not change this */
+  @apply bg-gray-100 text-gray-900;
 }
 </style>

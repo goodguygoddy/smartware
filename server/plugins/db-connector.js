@@ -1,7 +1,7 @@
 const fp = require('fastify-plugin');
 
 async function dbConnector(fastify, options) {
-  fastify.register(require('fastify-mongodb'), {
+  await fastify.register(require('fastify-mongodb'), {
     // force to close the mongodb connection when app stopped
     // the default value is false
     forceClose: true,
