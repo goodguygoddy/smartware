@@ -1,6 +1,5 @@
 <template>
   <div class="h-screen flex overflow-hidden bg-gray-100">
-    <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
     <transition :duration="300">
       <div
         v-show="offCanvasMenu"
@@ -8,16 +7,6 @@
         role="dialog"
         aria-modal="true"
       >
-        <!--
-      Off-canvas menu overlay, show/hide based on off-canvas menu state.
-
-      Entering: "transition-opacity ease-linear duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "transition-opacity ease-linear duration-300"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
         <transition
           enter-active-class="transition-opacity ease-linear duration-300"
           enter-class="opacity-0"
@@ -32,17 +21,6 @@
             aria-hidden="true"
           ></div>
         </transition>
-
-        <!--
-      Off-canvas menu, show/hide based on off-canvas menu state.
-
-      Entering: "transition ease-in-out duration-300 transform"
-        From: "-translate-x-full"
-        To: "translate-x-0"
-      Leaving: "transition ease-in-out duration-300 transform"
-        From: "translate-x-0"
-        To: "-translate-x-full"
-    -->
         <transition
           enter-active-class="transition ease-in-out duration-300 transform"
           enter-class="-translate-x-full"
@@ -63,16 +41,6 @@
               bg-white
             "
           >
-            <!--
-        Close button, show/hide based on off-canvas menu state.
-
-        Entering: "ease-in-out duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in-out duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
             <transition
               enter-active-class="ease-in-out duration-300"
               enter-class="opacity-0"
@@ -157,7 +125,7 @@
                   <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
                   <!-- Heroicon name: outline/home -->
                   <svg
-                    class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6"
+                    class="text-blue-400 group-hover:text-blue-500 mr-4 h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -195,7 +163,7 @@
                 >
                   <!-- Heroicon name: outline/users -->
                   <svg
-                    class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6"
+                    class="text-blue-400 group-hover:text-blue-500 mr-4 h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -233,7 +201,7 @@
                 >
                   <!-- Heroicon name: outline/folder -->
                   <svg
-                    class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6"
+                    class="text-blue-400 group-hover:text-blue-500 mr-4 h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -271,7 +239,7 @@
                 >
                   <!-- Heroicon name: outline/calendar -->
                   <svg
-                    class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6"
+                    class="text-blue-400 group-hover:text-blue-500 mr-4 h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -309,7 +277,7 @@
                 >
                   <!-- Heroicon name: outline/inbox -->
                   <svg
-                    class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6"
+                    class="text-blue-400 group-hover:text--500 mr-4 h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -347,7 +315,7 @@
                 >
                   <!-- Heroicon name: outline/chart-bar -->
                   <svg
-                    class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6"
+                    class="text-blue-400 group-hover:text-blue-500 mr-4 h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -420,7 +388,7 @@
                 <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
                 <!-- Heroicon name: outline/home -->
                 <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6"
+                  class="text-blue-400 group-hover:text-blue-500 mr-3 h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -458,7 +426,7 @@
               >
                 <!-- Heroicon name: outline/users -->
                 <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6"
+                  class="text-blue-400 group-hover:text-blue-500 mr-3 h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -496,7 +464,7 @@
               >
                 <!-- Heroicon name: outline/folder -->
                 <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6"
+                  class="text-blue-400 group-hover:text-blue-500 mr-3 h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -534,7 +502,7 @@
               >
                 <!-- Heroicon name: outline/calendar -->
                 <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6"
+                  class="text-blue-400 group-hover:text-blue-500 mr-3 h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -572,7 +540,7 @@
               >
                 <!-- Heroicon name: outline/inbox -->
                 <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6"
+                  class="text-blue-400 group-hover:text-blue-500 mr-3 h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -610,7 +578,7 @@
               >
                 <!-- Heroicon name: outline/chart-bar -->
                 <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6"
+                  class="text-blue-400 group-hover:text-blue-500 mr-3 h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -746,17 +714,6 @@
                   </svg>
                 </button>
               </div>
-
-              <!--
-              Dropdown menu, show/hide based on menu state.
-
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
               <transition
                 enter-active-class="transition ease-out duration-100"
                 enter-class="transform opacity-0 scale-95"

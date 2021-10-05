@@ -16,7 +16,7 @@ async function vendorinvoice(fastify, options) {
     },
   });
 
-  // Get a single file with ID
+  // Get a single vendor invoice file with id
   fastify.route({
     method: 'GET',
     url: '/vendorinvoice/file/:id',
@@ -53,18 +53,25 @@ async function vendorinvoice(fastify, options) {
     },
   });
 
-  fastify.post('/upload', function (req, reply) {
-    // some code to handle file
-    const files = req.raw.files;
-    console.log(files);
-    let fileArr = [];
-    for (let key in files) {
-      fileArr.push({
-        name: files[key].name,
-        mimetype: files[key].mimetype,
-      });
-    }
-    reply.send(fileArr);
+  // Delete vendor invoice by id
+  fastify.route({
+    method: 'DELETE',
+    url: '/vendorinvoice/:id',
+    preValidation: [fastify.JWTauthenticate],
+    handler: async function (request, reply) {
+      try {
+        if (request.params.id) {
+          const res = await db.deleteOne({
+            _id: fastify.mongo.ObjectId(request.params.id),
+          });
+          reply.send('Vendor Invoice Deleted');
+        } else {
+          reply.error(res);
+        }
+      } catch (error) {
+        reply.send(error);
+      }
+    },
   });
 }
 

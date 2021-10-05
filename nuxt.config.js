@@ -7,7 +7,14 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' },
+      {
+        rel: 'stylesheet',
+        href: 'https://rsms.me/inter/inter.css',
+        crossorigin: 'anonymous',
+      },
+    ],
   },
 
   // Router Settings
@@ -70,6 +77,7 @@ export default {
       options: {
         path: '/',
       },
+      secure: true,
     },
     strategies: {
       local: {

@@ -60,7 +60,7 @@
               type="text"
               name="search"
               class="
-                focus:ring-indigo-500 focus:border-indigo-500
+                focus:ring-blue-200 focus:border-blue-200
                 block
                 w-full
                 pl-9
@@ -76,7 +76,7 @@
           class="shadow overflow-hidden border border-gray-200 sm:rounded-lg"
         >
           <table class="min-w-full divide-y divide-gray-200 table-auto">
-            <thead class="bg-gray-50">
+            <thead class="bg-blue-900">
               <tr>
                 <th
                   scope="col"
@@ -86,7 +86,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -100,7 +100,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -114,7 +114,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -128,7 +128,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -142,7 +142,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -156,7 +156,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -170,7 +170,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -184,7 +184,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -198,7 +198,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -212,7 +212,7 @@
                     py-3
                     text-left text-xs
                     font-medium
-                    text-gray-500
+                    text-white
                     uppercase
                     tracking-wider
                   "
@@ -278,11 +278,14 @@
                   {{ item.gross_amount | toCurrency(item.currency) }}
                 </td>
                 <td class="whitespace-normal text-sm text-gray-500">
-                  <button @click="getPreview(item._id)">
+                  <button
+                    class="focus:outline-none"
+                    @click="getPreview(item._id)"
+                  >
                     <!-- Preview Button -->
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-4 w-6 text-gray-500"
+                      class="h-4 w-6 text-blue-500"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -303,11 +306,14 @@
                   </button>
                 </td>
                 <td class="pr-3 whitespace-normal text-sm text-gray-500">
-                  <button @click="deleteInvoice(item._id)">
-                    <!-- Edit Button -->
+                  <button
+                    class="focus:outline-none"
+                    @click="showDeleteAlert = true"
+                  >
+                    <!-- Delete Button -->
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-4 w-6 text-gray-500"
+                      class="h-4 w-6 text-red-500"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -320,13 +326,22 @@
                       />
                     </svg>
                   </button>
+                  <DeleteAlert
+                    v-show="showDeleteAlert"
+                    :show-delete-alert="showDeleteAlert"
+                    @close-delete-alert="showDeleteAlert = false"
+                    @delete-vendor-invoice="
+                      deleteInvoice(item._id);
+                      showDeleteAlert = false;
+                    "
+                  />
                 </td>
               </tr>
             </tbody>
           </table>
           <nav
             class="
-              bg-gray-50
+              bg-blue-50
               px-4
               py-3
               flex
@@ -398,11 +413,13 @@
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import LottieAnimation from 'lottie-web-vue';
+import DeleteAlert from './DeleteAlert.vue';
 
 export default {
   name: 'UploadInvoice',
   components: {
     LottieAnimation,
+    DeleteAlert,
   },
   filters: {
     toCurrency(value, currency) {
@@ -417,6 +434,7 @@ export default {
     return {
       loading: true,
       showMore: false,
+      showDeleteAlert: false,
       data: {},
       search: '',
     };
@@ -472,7 +490,8 @@ export default {
         method: 'DELETE',
         url: `/vendorinvoice/${id}`,
       });
-      console.log(res);
+      this.$toast.show(res.data);
+      this.getInvoice();
     },
     dateFormat(date) {
       dayjs.extend(LocalizedFormat);
