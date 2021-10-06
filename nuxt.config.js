@@ -2,11 +2,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Smartware',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-    ],
+    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: '' }],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' },
       {
@@ -76,15 +72,20 @@ export default {
       prefix: 'auth.',
       options: {
         path: '/',
+        secure: true,
       },
-      secure: true,
     },
     strategies: {
       local: {
         token: {
           property: 'token',
-          // required: true,
-          // type: 'Bearer'
+          required: true,
+          type: 'Bearer',
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          data: 'refresh_token',
+          maxAge: 60 * 60 * 24 * 30,
         },
         user: {
           property: 'user',
@@ -99,11 +100,11 @@ export default {
     },
     localStorage: false,
     // The redirects are not working in the nuxt auth modules as of now
-    // redirect: {
-    //   login: '/login',
-    //   logout: '/login',
-    //   home: '/',
-    // },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/',
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

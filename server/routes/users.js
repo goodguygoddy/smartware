@@ -40,6 +40,30 @@ async function users(fastify, options) {
     },
   });
 
+  // JWT Referesh token
+  // fastify.route({
+  //   method: 'POST',
+  //   url: '/referesh',
+  //   async handler(request, reply) {
+  //     try {
+  //       const res = await db
+  //         .find({
+  //           email: request.body.email,
+  //           password: request.body.password,
+  //         })
+  //         .toArray();
+  //       if (res.length !== 0) {
+  //         const token = await fastify.jwt.sign({ res });
+  //         reply.send({ token });
+  //       } else {
+  //         reply.code(401).send('The user does not exist');
+  //       }
+  //     } catch (error) {
+  //       reply.send(error);
+  //     }
+  //   },
+  // });
+
   // Logout User
   fastify.route({
     method: 'POST',
