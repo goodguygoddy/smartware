@@ -1,13 +1,16 @@
 <template>
   <div>
     <DashboardMetrics />
-    <ResponsiveTable />
+    <DashboardTable />
   </div>
 </template>
 
 <script>
 export default {
   name: 'Dashboard',
+  head: {
+    title: 'Smartware - Dashboard',
+  },
 };
 </script>
 
